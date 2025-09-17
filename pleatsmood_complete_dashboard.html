@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>플리츠무드 PRO 글로벌 성과 대시보드</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .small-chart {
+            height: 300px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .metric-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .country-flag {
+            font-size: 1.5rem;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <div class="gradient-bg text-white p-6 mb-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">👗 플리츠무드 PRO 글로벌 성과 대시보드</h1>
+                    <p class="text-blue-100">실시간 매출 분석 및 글로벌 확장 현황</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-xl font-bold">총 글로벌 매출</div>
+                    <div class="text-3xl font-bold">₩11,527,508</div>
+                    <div class="text-sm text-blue-200">11개국 진출</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- 기본 정보 카드 -->
+        <div class="bg-white p-6 rounded-lg card-shadow mb-8">
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+                <div class="text-center">
+                    <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                        <i class="fas fa-store text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">브랜드명</h3>
+                    <p class="text-lg font-semibold">플리츠무드</p>
+                    <p class="text-xs text-gray-500">quick4884.cafe24.com</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                        <i class="fas fa-calendar text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">쇼핑몰 개설일</h3>
+                    <p class="text-lg font-semibold">2015-08-05</p>
+                    <p class="text-xs text-gray-500">10년차 운영</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                        <i class="fas fa-tshirt text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">카테고리</h3>
+                    <p class="text-lg font-semibold">여성복</p>
+                    <p class="text-xs text-gray-500">의복 > 여성복</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-orange-100 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                        <i class="fas fa-rocket text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">PRO 가입일</h3>
+                    <p class="text-lg font-semibold">2025-04-25</p>
+                    <p class="text-xs text-gray-500">FAS No: 8007</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 핵심 지표 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg card-shadow metric-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">국내몰 상품수</p>
+                        <p class="text-3xl font-bold text-blue-600">30개</p>
+                        <p class="text-xs text-blue-500">진열&판매 / 전체 31개</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-box text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg card-shadow metric-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">국내몰 90일 주문</p>
+                        <p class="text-3xl font-bold text-green-600">362건</p>
+                        <p class="text-xs text-green-500">평균 4.0건/일</p>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-full">
+                        <i class="fas fa-shopping-cart text-green-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg card-shadow metric-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">국내몰 90일 매출</p>
+                        <p class="text-3xl font-bold text-purple-600">₩40.3M</p>
+                        <p class="text-xs text-purple-500">평균 ₩111,440/건</p>
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded-full">
+                        <i class="fas fa-won-sign text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg card-shadow metric-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">국내몰 누적 회원</p>
+                        <p class="text-3xl font-bold text-orange-600">11,858명</p>
+                        <p class="text-xs text-orange-500">90일 신규 292명</p>
+                    </div>
+                    <div class="bg-orange-100 p-3 rounded-full">
+                        <i class="fas fa-users text-orange-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 글로벌 PRO몰 vs 국내몰 비교 -->
+        <div class="bg-white p-6 rounded-lg card-shadow mb-8">
+            <h3 class="text-xl font-bold mb-6 text-gray-800">📊 국내몰 vs PRO 글로벌몰 비교 (최근 90일)</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 국내몰 -->
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-blue-800 mb-4 text-center">🇰🇷 국내몰 성과</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">주문수</span>
+                            <span class="font-bold text-2xl text-blue-600">362건</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">매출액</span>
+                            <span class="font-bold text-xl text-blue-600">₩40,321,800</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">방문자</span>
+                            <span class="font-bold text-lg text-blue-600">17,584명</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">신규회원</span>
+                            <span class="font-bold text-lg text-blue-600">292명</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRO 글로벌몰 -->
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-green-800 mb-4 text-center">🌍 PRO 글로벌몰 성과</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">주문수</span>
+                            <span class="font-bold text-2xl text-green-600">47건</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">매출액</span>
+                            <span class="font-bold text-xl text-green-600">₩11,527,508</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">방문자</span>
+                            <span class="font-bold text-lg text-green-600">18,042명</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">신규회원</span>
+                            <span class="font-bold text-lg text-green-600">57명</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-yellow-50 rounded-lg">
+                <h4 class="font-bold text-yellow-800 mb-2">💡 주요 인사이트</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <ul class="space-y-1">
+                        <li>• PRO몰 건당 평균 주문금액: <strong>₩245,266</strong></li>
+                        <li>• 국내몰 건당 평균 주문금액: <strong>₩111,440</strong></li>
+                        <li>• <strong>글로벌 고객의 구매력이 2.2배 높음</strong></li>
+                    </ul>
+                    <ul class="space-y-1">
+                        <li>• 글로벌 전환율: 0.26% (47건/18,042방문)</li>
+                        <li>• 국내 전환율: 2.06% (362건/17,584방문)</li>
+                        <li>• 글로벌 시장에서 큰 성장 잠재력 확인</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 국가별 매출 분석 -->
+        <div class="grid lg:grid-cols-3 gap-8 mb-8">
+            <!-- 매출 차트 -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-lg card-shadow">
+                <h3 class="text-xl font-bold mb-4">🌍 국가별 매출 분포</h3>
+                <div class="chart-container">
+                    <canvas id="countrySalesChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 상위 5개국 리스트 -->
+            <div class="bg-white p-6 rounded-lg card-shadow">
+                <h3 class="text-xl font-bold mb-4">🏆 매출 상위 5개국</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="country-flag mr-3">🇸🇬</span>
+                            <div>
+                                <div class="font-bold">싱가포르</div>
+                                <div class="text-xs text-gray-500">27건</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-red-600">₩6.9M</div>
+                            <div class="text-xs">60.1%</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="country-flag mr-3">🇭🇰</span>
+                            <div>
+                                <div class="font-bold">홍콩</div>
+                                <div class="text-xs text-gray-500">7건</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-orange-600">₩1.6M</div>
+                            <div class="text-xs">14.2%</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="country-flag mr-3">🇹🇼</span>
+                            <div>
+                                <div class="font-bold">대만</div>
+                                <div class="text-xs text-gray-500">3건</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-yellow-600">₩697K</div>
+                            <div class="text-xs">6.0%</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="country-flag mr-3">🇲🇾</span>
+                            <div>
+                                <div class="font-bold">말레이시아</div>
+                                <div class="text-xs text-gray-500">2건</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-green-600">₩640K</div>
+                            <div class="text-xs">5.5%</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="country-flag mr-3">🇵🇭</span>
+                            <div>
+                                <div class="font-bold">필리핀</div>
+                                <div class="text-xs text-gray-500">2건</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-blue-600">₩349K</div>
+                            <div class="text-xs">3.0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 상세 국가별 데이터 테이블 -->
+        <div class="bg-white p-6 rounded-lg card-shadow mb-8">
+            <h3 class="text-xl font-bold mb-4">📋 국가별 상세 매출 현황</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left">순위</th>
+                            <th class="px-4 py-3 text-left">국가</th>
+                            <th class="px-4 py-3 text-center">주문수</th>
+                            <th class="px-4 py-3 text-right">매출액 (KRW)</th>
+                            <th class="px-4 py-3 text-right">평균 주문금액</th>
+                            <th class="px-4 py-3 text-right">배송비</th>
+                            <th class="px-4 py-3 text-center">비중</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y" id="countryTable">
+                        <!-- 테이블 데이터는 JavaScript로 생성 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 성장 분석 -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- 주문 패턴 분석 -->
+            <div class="bg-white p-6 rounded-lg card-shadow">
+                <h3 class="text-xl font-bold mb-4 text-purple-600">📈 주문 패턴 분석</h3>
+                <div class="chart-container small-chart">
+                    <canvas id="orderPatternChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 시장 분석 -->
+            <div class="bg-white p-6 rounded-lg card-shadow">
+                <h3 class="text-xl font-bold mb-4 text-indigo-600">🎯 시장 분석</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold mb-3">지역별 시장 점유율</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">동남아시아 (7개국)</span>
+                                    <span class="text-sm font-bold">89.2%</span>
+                                </div>
+                                <div class="progress-bar bg-gray-200">
+                                    <div class="progress-fill bg-red-500" style="width: 89.2%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">오세아니아 (2개국)</span>
+                                    <span class="text-sm font-bold">3.6%</span>
+                                </div>
+                                <div class="progress-bar bg-gray-200">
+                                    <div class="progress-fill bg-blue-500" style="width: 3.6%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">기타 지역 (2개국)</span>
+                                    <span class="text-sm font-bold">7.2%</span>
+                                </div>
+                                <div class="progress-bar bg-gray-200">
+                                    <div class="progress-fill bg-green-500" style="width: 7.2%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-3">성장 잠재력 분석</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center">
+                                <i class="fas fa-fire text-red-500 mr-2"></i>
+                                <span><strong>싱가포르</strong>: 압도적 1위, 추가 확장 필요</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-chart-line text-yellow-500 mr-2"></i>
+                                <span><strong>홍콩/대만</strong>: 중형 시장, 성장 여지</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-seed text-green-500 mr-2"></i>
+                                <span><strong>뉴질랜드</strong>: 신규 시장, 테스트베드</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 추천 액션 플랜 -->
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg card-shadow">
+            <h3 class="text-2xl font-bold mb-6 text-center">🚀 성장 액션 플랜</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white bg-opacity-10 p-4 rounded-lg">
+                    <i class="fas fa-target text-3xl mb-3"></i>
+                    <h4 class="font-bold mb-2">단기 목표 (3개월)</h4>
+                    <ul class="text-sm space-y-1 opacity-90">
+                        <li>• 싱가포르 마케팅 집중 투자</li>
+                        <li>• 홍콩/대만 고객 확대</li>
+                        <li>• 글로벌 전환율 0.5% 달성</li>
+                    </ul>
+                </div>
+                <div class="bg-white bg-opacity-10 p-4 rounded-lg">
+                    <i class="fas fa-chart-line text-3xl mb-3"></i>
+                    <h4 class="font-bold mb-2">중기 목표 (6개월)</h4>
+                    <ul class="text-sm space-y-1 opacity-90">
+                        <li>• 월 글로벌 매출 2천만원 달성</li>
+                        <li>• 신규 국가 2-3개 추가 진출</li>
+                        <li>• PRO 기능 최적화 완료</li>
+                    </ul>
+                </div>
+                <div class="bg-white bg-opacity-10 p-4 rounded-lg">
+                    <i class="fas fa-globe text-3xl mb-3"></i>
+                    <h4 class="font-bold mb-2">장기 비전 (1년)</h4>
+                    <ul class="text-sm space-y-1 opacity-90">
+                        <li>• 글로벌 매출 50% 달성</li>
+                        <li>• 15개국 이상 진출</li>
+                        <li>• 글로벌 플리츠 브랜드 구축</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <p>&copy; 2025 플리츠무드 x 카페24 PRO. 글로벌 성장의 여정이 계속됩니다.</p>
+    </footer>
+
+    <script>
+        // 실제 데이터
+        const countryData = [
+            {code: 'SG', name: '싱가포르', flag: '🇸🇬', orders: 27, sales: 6929235, shipping: 553},
+            {code: 'HK', name: '홍콩', flag: '🇭🇰', orders: 7, sales: 1639514, shipping: 147},
+            {code: 'TW', name: '대만', flag: '🇹🇼', orders: 3, sales: 696629, shipping: 64},
+            {code: 'MY', name: '말레이시아', flag: '🇲🇾', orders: 2, sales: 639977, shipping: 55},
+            {code: 'PH', name: '필리핀', flag: '🇵🇭', orders: 2, sales: 348553, shipping: 37},
+            {code: 'BN', name: '브루나이', flag: '🇧🇳', orders: 1, sales: 273323, shipping: 29},
+            {code: 'NZ', name: '뉴질랜드', flag: '🇳🇿', orders: 1, sales: 231273, shipping: 31},
+            {code: 'CA', name: '캐나다', flag: '🇨🇦', orders: 1, sales: 221397, shipping: 42},
+            {code: 'TH', name: '태국', flag: '🇹🇭', orders: 1, sales: 217509, shipping: 18},
+            {code: 'AU', name: '호주', flag: '🇦🇺', orders: 1, sales: 185555, shipping: 32},
+            {code: 'KR', name: '한국', flag: '🇰🇷', orders: 2, sales: 143843, shipping: 0}
+        ].sort((a, b) => b.sales - a.sales);
+
+        const totalSales = countryData.reduce((sum, country) => sum + country.sales, 0);
+
+        // 국가별 매출 차트
+        const ctx = document.getElementById('countrySalesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: countryData.slice(0, 8).map(c => `${c.flag} ${c.name}`).concat(['기타']),
+                datasets: [{
+                    data: countryData.slice(0, 8).map(c => c.sales).concat([
+                        countryData.slice(8).reduce((sum, c) => sum + c.sales, 0)
+                    ]),
+                    backgroundColor: [
+                        '#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4',
+                        '#3b82f6', '#8b5cf6', '#ec4899', '#6b7280'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: { size: 11 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const percentage = ((context.raw / totalSales) * 100).toFixed(1);
+                                return `${context.label}: ₩${context.raw.toLocaleString()} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 주문 패턴 차트
+        const orderCtx = document.getElementById('orderPatternChart').getContext('2d');
+        new Chart(orderCtx, {
+            type: 'bar',
+            data: {
+                labels: countryData.slice(0, 6).map(c => c.flag),
+                datasets: [{
+                    label: '주문수',
+                    data: countryData.slice(0, 6).map(c => c.orders),
+                    backgroundColor: '#3b82f6',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 테이블 생성
+        function createCountryTable() {
+            const tbody = document.getElementById('countryTable');
+            tbody.innerHTML = '';
+
+            countryData.forEach((country, index) => {
+                const avgOrder = (country.sales / country.orders).toLocaleString();
+                const percentage = ((country.sales / totalSales) * 100).toFixed(1);
+
+                const row = `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3 font-bold text-gray-700">${index + 1}</td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center">
+                                <span class="mr-2 text-lg">${country.flag}</span>
+                                <span class="font-medium">${country.name}</span>
+                            </div>
+                        </td>
+                        <td class="px-4 py-3 text-center font-bold">${country.orders}건</td>
+                        <td class="px-4 py-3 text-right font-bold text-green-600">₩${country.sales.toLocaleString()}</td>
+                        <td class="px-4 py-3 text-right">₩${avgOrder}</td>
+                        <td class="px-4 py-3 text-right text-gray-600">₩${country.shipping.toLocaleString()}</td>
+                        <td class="px-4 py-3 text-center font-semibold">${percentage}%</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            createCountryTable();
+
+            // 애니메이션 효과
+            const cards = document.querySelectorAll('.card-shadow, .metric-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.8s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            // 프로그레스바 애니메이션
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    bar.style.width = bar.style.width;
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
